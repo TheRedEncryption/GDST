@@ -1,0 +1,60 @@
+@font-face{ 
+	font-family: 'Pusab';
+	src: url('/assets/fonts/PUSAB.woff') format('woff');
+    src: url('./assets/fonts/PUSAB.ttf') format('truetype');
+}
+
+h1 {
+    font-family: 'Pusab', Helvetica, sans-serif;
+    font-size: 9vw;
+    text-align: center;
+    background: -webkit-linear-gradient(rgb(255, 255, 182),rgb(232, 197, 0));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px;
+    -webkit-text-stroke-color: black;
+    margin: 0px;
+}
+
+h2 {
+    font-family: 'Pusab', Helvetica, sans-serif;
+    font-size: 5.5vw;
+    text-align: center;
+    background: -webkit-linear-gradient(rgb(171, 255, 165),rgb(64, 181, 25));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px;
+    -webkit-text-stroke-color: black;
+    margin: 0px;
+}
+
+#title {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+div.warning {
+    margin: auto;
+    margin-bottom: 50px;
+    border: 2px solid yellow;
+    background-color: rgb(255, 247, 156);
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 50vw;
+    text-align: center;
+    font-family: Helvetica, sans-serif;
+}
+
+div.dire-warning {
+    margin: auto;
+    margin-bottom: 50px;
+    border: 2px solid rgb(255, 0, 0);
+    background-color: rgb(255, 156, 156);
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 50vw;
+    text-align: center;
+    font-family: Helvetica, sans-serif;
+}

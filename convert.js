@@ -12,15 +12,16 @@ addEventListener('DOMContentLoaded', (event) => {
     levelInput.addEventListener("change", setupFile);
 });
 
-// 
+// sets up file after initial file upload
 function setupFile() {
     inputURL = URL.createObjectURL(levelInput.files[0]);
     inputFile = levelInput.files[0];
     inputFile.text().then(text => {
         inputContent = text;
         outputURL = URL.createObjectURL(new File([convert(inputContent)], {type: ".xml"}));
-        window.open(outputURL, "_blank");
-        //downloadConverted(); //comment this function out
+
+        //window.open(outputURL, "_blank");
+        downloadConverted(); //comment this function out
     })
 }
 
@@ -36,20 +37,27 @@ function xor(input, key){
 // this is the biggest pain since the uninvention of sliced bread (someone seriously had to go back in time to stop it for some reason)
 // this function might seem simple but it was the source of ~24 hours of pain so don't be fooled by its facade!!!!
 function convert(input){
+
     // step 0: get input and also variables
     var step1;
     var step2;
     var step3;
+
     // step 1: xor cipher with key 11
-    step1 = xor(input, 11).slice(0,-2); // the last two bytes are the "weird bytes" i talked about below
+    console.log(xor(input,11)[input.length - 1]);
+    step1 = cleanUp(xor(input, 11)); // the last bytes are the "weird bytes" i talked about below
+
     // step 2: clean up the string because robtop used - and _ instead of + and / to encode the base 64
-    step2 = step1.replace(/-/g,"+"); // MOM LOOK I USED MY FIRST REGEX!!!!!!!!!!
-    step2 = step2.replace(/_/g,"/"); // "that's cool honey now do your homework"
+    step2 = step1.replace(/-/g,"+");                        // MOM LOOK I USED MY FIRST REGEX!!!!!!!!!!
+    step2 = step2.replace(/_/g,"/");                        // "that's cool honey now do your homework"
+
     // step 3: decode base64
     step3 = decompress(step2);
+
     // free memory
     step1 = null;
     step2 = null;
+
     // this is the part where the fun begins (not really, there is no fun when it comes to coding in javascript)
     return step3;
 }
@@ -59,10 +67,15 @@ function convert(input){
 function downloadConverted(){
     link = document.createElement("a");
     link.href = outputURL;
-    link.setAttribute("download", "output.dat");
+    link.setAttribute("download", "output.xml");
     document.body.appendChild(link);
     link.click();
     link.remove();
+}
+
+function cleanUp(input){ // sometimes there is one messed up byte, sometimes there are two, sometimes none. thanks again, regex!
+    var output = input.replace(/\x00/g,"");
+    return output;
 }
 
 function decompress(data){
@@ -84,3 +97,5 @@ function base64ToDecimal(encodedString) {
     //return parseInt(decimalArray.join('')); <-------- i had to do some MILD modification
     return decimalArray;
 }
+
+// TODO: Upload and read an SVG file (?) Also, do cool things with html and css
