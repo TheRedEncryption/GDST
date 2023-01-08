@@ -3,12 +3,19 @@
 var levelInput;
 var inputFile;
 var inputURL;
-var outputURL;
+var convertedURL;
 var inputContent;
+
+var fakeUpload;
 
 // when the content is loaded, then this happens
 addEventListener('DOMContentLoaded', (event) => { 
+    fakeUpload = document.getElementById("fakeinput");
     levelInput = document.getElementById("levelinput");
+    levelInput.style.display = "none";
+    fakeUpload.onclick = function(){
+        levelInput.click();
+    }
     levelInput.addEventListener("change", setupFile);
 });
 
@@ -17,11 +24,12 @@ function setupFile() {
     inputURL = URL.createObjectURL(levelInput.files[0]);
     inputFile = levelInput.files[0];
     inputFile.text().then(text => {
-        inputContent = text;
-        outputURL = URL.createObjectURL(new File([convert(inputContent)], {type: ".xml"}));
-
-        //window.open(outputURL, "_blank");
-        downloadConverted(); //comment this function out
+        try {
+            inputContent = text;
+            convertedURL = URL.createObjectURL(new File([convert(inputContent)], {type: ".xml"}));
+        } catch (error) {
+            alert("Something went wrong with your file.\nIs it corrupted, or is it the correct file?");
+        }
     })
 }
 
@@ -41,45 +49,33 @@ function convert(input){
     // step 0: get input and also variables
     var step1;
     var step2;
-    var step3;
 
     // step 1: xor cipher with key 11
     console.log(xor(input,11)[input.length - 1]);
     step1 = cleanUp(xor(input, 11)); // the last bytes are the "weird bytes" i talked about below
 
-    // step 2: clean up the string because robtop used - and _ instead of + and / to encode the base 64
-    step2 = step1.replace(/-/g,"+");                        // MOM LOOK I USED MY FIRST REGEX!!!!!!!!!!
-    step2 = step2.replace(/_/g,"/");                        // "that's cool honey now do your homework"
-
-    // step 3: decode base64
-    step3 = decompress(step2);
+    // steps 2 and 3: decode base64 and ungzip
+    step2 = decompress(step1);
 
     // free memory
     step1 = null;
-    step2 = null;
 
     // this is the part where the fun begins (not really, there is no fun when it comes to coding in javascript)
-    return step3;
+    return step2;
 }
 
 // note for future me: there might be "weird bytes" at the end of the base 64 encoding that if trimmed, can allow the decoder to work
 
-function downloadConverted(){
-    link = document.createElement("a");
-    link.href = outputURL;
-    link.setAttribute("download", "output.xml");
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-}
-
+// clean up the string because robtop used - and _ instead of + and / to encode the base 64
 function cleanUp(input){ // sometimes there is one messed up byte, sometimes there are two, sometimes none. thanks again, regex!
     var output = input.replace(/\x00/g,"");
+    output = output.replace(/-/g,"+");                        // MOM LOOK I USED MY FIRST REGEX!!!!!!!!!!
+    output = output.replace(/_/g,"/");                        // "that's cool honey now do your homework"
     return output;
 }
 
 function decompress(data){
-    return pako.ungzip(Uint8Array.from(base64ToDecimal(data)));
+    return pako.ungzip(Uint8Array.from(base64ToDecimal(cleanUp(data))), {to:"string"});
 }
 
 // Someone on github named abbasali made this. Thank you.
@@ -97,5 +93,3 @@ function base64ToDecimal(encodedString) {
     //return parseInt(decimalArray.join('')); <-------- i had to do some MILD modification
     return decimalArray;
 }
-
-// TODO: Upload and read an SVG file (?) Also, do cool things with html and css
