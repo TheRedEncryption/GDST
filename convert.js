@@ -93,3 +93,8 @@ function base64ToDecimal(encodedString) {
     //return parseInt(decimalArray.join('')); <-------- i had to do some MILD modification
     return decimalArray;
 }
+
+function secondDecoding(text){ // WIP
+    const k4 = /(<k>k4<\/k>).+?(<\/s>)/g;
+    return text.match(k4);
+}
