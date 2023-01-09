@@ -72,9 +72,32 @@ function rgb2hsv (r, g, b) { // someone on stackoverflow named Mic wrote this, h
             h -= 1;
         }
     }
-    return {
-        h: Math.round(h * 360),
-        s: percentRoundFn(s * 100),
-        v: percentRoundFn(v * 100)
-    };
+    return [
+        Math.round(h * 360),
+        Math.round(percentRoundFn(s * 100)) / 100,
+        Math.round(percentRoundFn(v * 100) / 100)
+    ];
+}
+
+class GDObject {
+    constructor(id, x, y, size, rotation, colorValA, colorValB, colorValC, colorType){
+        this.id = id;
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.rotation = rotation;
+        switch(colorType){
+            case "rgb":
+                [this.h, this.s, this.v] = rgb2hsv(colorValA, colorValB, colorValC);
+                break;
+            case "hsv":
+                this.h = colorValA;
+                this.s = colorValB;
+                this.v = colorValC;
+                break;
+        }
+        this.toString = function(){
+            return "1," + this.id + ",2," + this.x + ",3," + this.y + ",6," + this.rotation + ",28," + this.size;
+        }
+    }
 }
