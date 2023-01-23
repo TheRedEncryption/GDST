@@ -9,6 +9,9 @@ var imageData = null;
 var outputObjects = [];
 var outputStringBitmap = "";
 
+const levelHeader = "<k>k_0</k><d><k>kCEK</k><i>4</i><k>k2</k><s>Output</s><k>k3</k><s>R2VuZXJhdGVkIGJ5IFRoZVJlZEVuY3J5cHRpb24ncyBHRFNUIQ==</s><k>k4</k><s>kS38,1_40_2_125_3_255_11_255_12_255_13_255_4_-1_6_1000_7_1_15_1_18_0_8_1|1_0_2_102_3_255_11_255_12_255_13_255_4_-1_6_1001_7_1_15_1_18_0_8_1|1_0_2_102_3_255_11_255_12_255_13_255_4_-1_6_1009_7_1_15_1_18_0_8_1|1_255_2_255_3_255_11_255_12_255_13_255_4_-1_6_1002_5_1_7_1_15_1_18_0_8_1|1_255_2_0_3_0_11_255_12_255_13_255_4_-1_6_1005_5_1_7_1_15_1_18_0_8_1|1_255_2_255_3_255_11_255_12_255_13_255_4_-1_6_1006_5_1_7_1_15_1_18_0_8_1|1_255_2_0_3_0_11_255_12_255_13_255_4_-1_6_1_7_1_15_1_18_0_8_1|,kA13,0,kA15,0,kA16,0,kA14,,kA6,0,kA7,0,kA17,0,kA18,0,kS39,0,kA2,0,kA3,0,kA8,0,kA4,0,kA9,0,kA10,0,kA11,0;";
+const levelFooter = "</s><k>k5</k><s>TheRedEncryption's GDST</s><k>k13</k><t /><k>k21</k><i>2</i><k>k16</k><i>1</i><k>k80</k><i>22</i><k>k50</k><i>35</i><k>k47</k><t /><k>kI1</k><r>-1.35003</r><k>kI2</k><r>25.2</r><k>kI3</k><r>0.7</r><k>kI6</k><d><k>0</k><s>0</s><k>1</k><s>0</s><k>2</k><s>0</s><k>3</k><s>0</s><k>4</k><s>0</s><k>5</k><s>0</s><k>6</k><s>0</s><k>7</k><s>0</s><k>8</k><s>0</s><k>9</k><s>0</s><k>10</k><s>0</s><k>11</k><s>0</s><k>12</k><s>0</s></d></d>";
+
 function imagePopulateHTML(toolDivider){
     // resets the div
     toolDivider.innerHTML = "";
@@ -45,16 +48,27 @@ function imagePopulateHTML(toolDivider){
 }
 
 function processImageFile(){
+
+    // takes the latest file
     var img = imageInput.files[0];
+
+    // creates new Image object from image
     var imgURL = URL.createObjectURL(img);
     var file = new Image();
     file.src = imgURL;
+
+    // upon loading, do this:
     file.onload = function(){
         console.log(img.type);
+
+        // if image is png, then
         if(img.type == "image/png"){
             turnImgToRGB(file);
             createObjectsFromBitmap(imageData.data);
+            downloadBlob(URL.createObjectURL(new Blob([insertLevel()])), "_blank");
         }
+
+        //otherwise, if svg, then
     }
 }
 
@@ -150,7 +164,8 @@ class GDObject {
 
 class GDBitmapObject extends GDObject{
     constructor(x, y, colorValA, colorValB, colorValC, channel = 1){
-        super(917, x, y, 0.5, 0, colorValA, colorValB, colorValC, "rgb", channel);
+        // the "1" is the scale, originally it was 0.5
+        super(917, x, y, 1, 0, colorValA, colorValB, colorValC, "rgb", channel);
     }
 
     toString(){
@@ -177,7 +192,8 @@ function createObjectsFromBitmap(data) {
 
     for(let i = 0; i < imageData.height; i++){
         for(let j = 0; j < imageData.width; j++){
-            outputObjects.push(new GDBitmapObject(i * 3.5, j * 3.5, r[index], g[index], b[index]));
+            // the "7" is the space between objects, originally it was 3.5
+            outputObjects.push(new GDBitmapObject(i * 7, j * 7, r[index], g[index], b[index]));
             index++;
         }
     }
@@ -186,5 +202,21 @@ function createObjectsFromBitmap(data) {
         outputStringBitmap += obj.toString() + ";";
     });
     
-    console.log(outputStringBitmap);
+}
+
+function insertLevel(){
+
+    // the magic number 18 is the length of the matching string
+    let matchIndex = convertedText.match(/<k>_isArr<\/k><t \/>/).index + 18;
+    console.log(matchIndex);
+    return (convertedText.slice(0, matchIndex) + (levelHeader + outputStringBitmap + levelFooter) + convertedText.slice(matchIndex));
+}
+
+function downloadBlob(dlurl, name = "output.dat"){
+    link = document.createElement("a");
+    link.href = dlurl;
+    link.setAttribute("download", name);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
 }

@@ -8,6 +8,8 @@ var inputContent;
 
 var fakeUpload;
 
+var convertedText;
+
 // when the content is loaded, then this happens
 addEventListener('DOMContentLoaded', (event) => { 
     fakeUpload = document.getElementById("fakeinput");
@@ -59,6 +61,9 @@ function convert(input){
 
     // free memory
     step1 = null;
+
+    // but not here apparently
+    convertedText = step2;
 
     // this is the part where the fun begins (not really, there is no fun when it comes to coding in javascript)
     return step2;
