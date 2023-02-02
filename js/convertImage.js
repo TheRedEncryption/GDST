@@ -65,7 +65,7 @@ function processImageFile(){
         if(img.type == "image/png"){
             turnImgToRGB(file);
             createObjectsFromBitmap(imageData.data);
-            downloadBlob(URL.createObjectURL(new Blob([insertLevel()])), "_blank");
+            downloadBlob(URL.createObjectURL(new Blob([insertLevel()])), "CCLocalLevels.dat");
         }
 
         //otherwise, if svg, then
