@@ -1,206 +1,183 @@
-@font-face{ 
-	font-family: 'Pusab';
-	src: url('/assets/fonts/PUSAB.woff') format('woff');
-    src: url('./assets/fonts/PUSAB.ttf') format('truetype');
+@font-face {
+  font-family: 'Pusab';
+  src: url('/assets/fonts/PUSAB.woff') format('woff');
+  src: url('./assets/fonts/PUSAB.ttf') format('truetype');
 }
 
 @keyframes canvasBackground {
-    0% {
-        background-position: 500px;
-    }
-    101% {
-        background-position: 0px;
-    }
+  0% {
+    background-position: 500px;
+  }
+
+  101% {
+    background-position: 0px;
+  }
 }
 
 h1 {
-    font-family: 'Pusab', Helvetica, sans-serif;
-    font-size: 9vw;
-    text-align: center;
-    background: -webkit-linear-gradient(rgb(255, 255, 182),rgb(232, 197, 0));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: 1px;
-    -webkit-text-stroke-color: black;
-    margin: 0px;
+  font-family: 'Pusab', Helvetica, sans-serif;
+  text-align: center;
+  background: -webkit-linear-gradient(rgb(255, 255, 182), rgb(232, 197, 0));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px;
+  -webkit-text-stroke-color: black;
 }
 
 h2 {
-    font-family: 'Pusab', Helvetica, sans-serif;
-    font-size: 5.5vw;
-    text-align: center;
-    background: -webkit-linear-gradient(rgb(171, 255, 165),rgb(64, 181, 25));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: 1px;
-    -webkit-text-stroke-color: black;
-    margin: 0px;
+  font-family: 'Pusab', Helvetica, sans-serif;
+  text-align: center;
+  background: -webkit-linear-gradient(rgb(171, 255, 165), rgb(64, 181, 25));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px;
+  -webkit-text-stroke-color: black;
 }
 
 h3 {
-    font-family: 'Pusab', Helvetica, sans-serif;
-    font-size: 2.6vw;
-    text-align: center;
-    color: white;
-    -webkit-text-stroke: 1px;
-    -webkit-text-stroke-color: black;
-    margin: 10px;
+  font-family: 'Pusab', Helvetica, sans-serif;
+  text-align: center;
+  color: white;
+  -webkit-text-stroke: 1px;
+  -webkit-text-stroke-color: black;
 }
 
 #title {
-    margin-top: 50px;
-    margin-bottom: 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 div.warning {
-    margin: auto;
-    margin-bottom: 50px;
-    border: 2px solid yellow;
-    background-color: rgb(255, 247, 156);
-    border-radius: 10px;
-    padding: 10px;
-    max-width: 50vw;
-    text-align: center;
-    font-family: Helvetica, sans-serif;
+  margin: auto;
+  margin-bottom: 50px;
+  border: 2px solid yellow;
+  background-color: rgb(255, 247, 156);
+  border-radius: 10px;
+  padding: 10px;
+  max-width: 50vw;
+  text-align: center;
+  font-family: Helvetica, sans-serif;
 }
 
-div.warning:before{
-    content: '';
-    background:url('./assets/icons/warning.png');
-    background-size:cover;
-        position:absolute;
-    width:20px;
-    height:20px;
-    margin-left: -23px;
+div.warning:before {
+  content: '';
+  background: url('./assets/icons/warning.png');
+  background-size: cover;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin-left: -23px;
 }
 
 div.dire-warning {
-    margin: auto;
-    margin-bottom: 50px;
-    border: 2px solid rgb(255, 0, 0);
-    background-color: rgb(255, 156, 156);
-    border-radius: 10px;
-    padding: 10px;
-    max-width: 50vw;
-    text-align: center;
-    font-family: Helvetica, sans-serif;
+  margin: auto;
+  margin-bottom: 50px;
+  border: 2px solid rgb(255, 0, 0);
+  background-color: rgb(255, 156, 156);
+  border-radius: 10px;
+  padding: 10px;
+  max-width: 50vw;
+  text-align: center;
+  font-family: Helvetica, sans-serif;
 }
 
-div.dire-warning:before{
-    content: '';
-    background:url('./assets/icons/direwarning.png');
-    background-size:cover;
-        position:absolute;
-    width:20px;
-    height:20px;
-    margin-left: -23px;
+div.dire-warning:before {
+  content: '';
+  background: url('./assets/icons/direwarning.png');
+  background-size: cover;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin-left: -23px;
 }
 
 div.info {
-    margin: auto;
-    margin-bottom: 50px;
-    border: 2px solid blue;
-    background-color: rgb(151, 151, 255);
-    border-radius: 10px;
-    padding: 25px;
-    max-width: 30vw;
-    text-align: center;
-    font-family: Helvetica, sans-serif;
+  margin: auto;
+  margin-bottom: 50px;
+  border: 2px solid blue;
+  background-color: rgb(151, 151, 255);
+  border-radius: 10px;
+  padding: 25px;
+  max-width: 30vw;
+  text-align: center;
+  font-family: Helvetica, sans-serif;
 }
 
-div.info:before{
-    content: '';
-    background:url('./assets/icons/info.png');
-    background-size:cover;
-        position:absolute;
-    width:20px;
-    height:20px;
-    margin-left: -23px;
+div.info:before {
+  content: '';
+  background: url('./assets/icons/info.png');
+  background-size: cover;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin-left: -23px;
 }
 
 div.bodytext {
-    margin: auto;
-    margin-bottom: 50px;
-    border: 5px solid rgb(248, 182, 112);
-    background-color: rgb(209, 129, 43);
-    border-radius: 20px;
-    padding: 30px;
-    max-width: 60vw;
-    font-family: Helvetica, sans-serif;
-    /* color: white; */
-    font-weight: bold;
+  margin: auto;
+  margin-bottom: 50px;
+  border: 5px solid rgb(248, 182, 112);
+  background-color: rgb(209, 129, 43);
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 60vw;
+  font-family: Helvetica, sans-serif;
+  /* color: white; */
+  font-weight: bold;
 }
 
 div.editor {
-    margin: auto;
-    margin-bottom: 50px;
-    border: 5px solid rgb(203, 203, 203);
-    background-color: rgb(239, 239, 239);
-    border-radius: 20px;
-    padding: 30px;
-    max-width: 80vw;
-    font-family: Helvetica, sans-serif;
+  margin: auto;
+  margin-bottom: 50px;
+  border: 5px solid rgb(203, 203, 203);
+  background-color: rgb(239, 239, 239);
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 80vw;
+  font-family: Helvetica, sans-serif;
 }
 
 div.code {
-    margin: auto;
-    border: 3px solid gray;
-    background-color: black;
-    color: white;
-    border-radius: 15px;
-    padding: 20px;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: lighter;
+  margin: auto;
+  border: 3px solid gray;
+  background-color: black;
+  color: white;
+  border-radius: 15px;
+  padding: 20px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: lighter;
 }
 
 body {
-    background-color: rgb(97, 161, 206);
+  background-color: rgb(97, 161, 206);
 }
 
 button.fakeinput {
-    margin: auto;
-    width: 10vw;
-    height: 5vw;
-    border-radius: 1vw;
-    font-family: 'Pusab', Helvetica, sans-serif;
-    font-size: 2vw;
-    text-align: center;
-    background-color: white;
+  font-family: 'Pusab', Helvetica, sans-serif;
+  text-align: center;
+  background-color: white;
 }
 
 button {
-    margin: auto;
-    width: auto;
-    height: auto;
-    padding: 10px;
-    border-radius: 1vw;
-    font-family: 'Pusab', Helvetica, sans-serif;
-    font-size: 25px;
-    text-align: center;
-    background-color: white;
+  font-family: 'Pusab', Helvetica, sans-serif;
+  text-align: center;
+  background-color: white;
 }
 
 select {
-    margin: auto;
-    width: auto;
-    height: 3vw;
-    border-radius: 1vw;
-    border: 2px solid black;
-    font-family: 'Pusab', Helvetica, sans-serif;
-    font-size: 1.5vw;
-    text-align: center;
-    padding: auto;
-    padding-left: 0px;
+  border-radius: 1vw;
+  font-family: 'Pusab', Helvetica, sans-serif;
+  text-align: center;
 }
 
 #geometry_dash {
-    background-image: url("./assets/bg/tilebg.png");
-    background-size: contain;
-    background-repeat: repeat-x;
-    animation-name: canvasBackground;
-    animation-duration: 20s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+  background-image: url("./assets/bg/tilebg.png");
+  background-size: contain;
+  background-repeat: repeat-x;
+  animation-name: canvasBackground;
+  animation-duration: 20s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }

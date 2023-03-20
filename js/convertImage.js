@@ -1,6 +1,5 @@
 var imageInput;
 var fakeImageInput;
-var imageCenterDiv;
 
 var imagePreviewCanvas;
 
@@ -19,25 +18,23 @@ function imagePopulateHTML(toolDivider){
     // creates elements
     imageInput = document.createElement("input");
     fakeImageInput = document.createElement("button");
-    imageCenterDiv = document.createElement("div");
     imagePreviewCanvas = document.createElement("canvas");
 
     // sets their styles
-    imageCenterDiv.style = "display:flex; justify-content:center;";
     fakeImageInput.innerHTML = "Upload SVG or PNG Image";
+    fakeImageInput.className = "u-full-width";
     imageInput.style.display = "none";
     imageInput.type = "file";
 
     imagePreviewCanvas.style.border = "3px solid black";
-    imagePreviewCanvas.style.margin = "auto";
-    imagePreviewCanvas.width = 500;
+    imagePreviewCanvas.className = "u-full-width"
     imagePreviewCanvas.height = 500;
+    imagePreviewCanvas.width = 500;
     imagePreviewCanvas.id = "geometry_dash";
 
     // adds them to the div
     toolDivider.appendChild(imageInput);
-    toolDivider.appendChild(imageCenterDiv);
-    imageCenterDiv.appendChild(fakeImageInput);
+    toolDivider.appendChild(fakeImageInput);
     toolDivider.appendChild(document.createElement("br"));
     toolDivider.appendChild(document.createElement("br"));
     toolDivider.appendChild(imagePreviewCanvas);

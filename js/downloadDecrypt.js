@@ -6,17 +6,16 @@ function ddPopulateHTML(toolDivider){
     // creates elements
     var DDButton = document.createElement("button");
     var DDShow = document.createElement("button");
-    var DDCenterDiv = document.createElement("div");
 
     // styles elements
-    DDCenterDiv.style = "display:flex; justify-content:center;";
     DDButton.innerHTML = "Download Decrypted";
+    DDButton.className = "u-full-width";
     DDShow.innerHTML = "Show Decrypted";
+    DDShow.className = "u-full-width";
 
     // appends elements
-    toolDivider.appendChild(DDCenterDiv);
-    DDCenterDiv.appendChild(DDButton);
-    DDCenterDiv.appendChild(DDShow);
+    toolDivider.appendChild(DDButton);
+    toolDivider.appendChild(DDShow);
 
     // adds event listeners to the elements
     DDButton.addEventListener("click", downloadConverted);

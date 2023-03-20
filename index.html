@@ -1,95 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRE's GD Save Toolbox</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRE's GD Save Toolbox</title>
 
-    <script src="./convert.js"></script>
-    <script src="./pako.js"></script>
-    <script src="./switch.js"></script>
+  <script src="./convert.js"></script>
+  <script src="./pako.js"></script>
+  <script src="./switch.js"></script>
 
-    <script src="./js/downloadDecrypt.js"></script>
-    <script src="./js/convertImage.js"></script>
+  <script src="./js/downloadDecrypt.js"></script>
+  <script src="./js/convertImage.js"></script>
 
 
-    <link rel="icon" type="image/x-icon" href="icon.ico">
-    <link rel="stylesheet" href="style.css" type="text/css" charset="utf-8"/>
+  <link rel="icon" type="image/x-icon" href="icon.ico">
+  <link rel="stylesheet" href="Skeleton/css/normalize.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="Skeleton/css/skeleton.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="style.css" type="text/css" charset="utf-8" />
 </head>
+
 <body>
 
-    <!-- TITLE -->
-    <div id = "title">
-        <h1>TheRedEncryption's</h1>
-        <h2>Geometry Dash Save Toolbox</h2>
-    </div>
+  <!-- TITLE -->
+  <div id="title">
+    <h1>TheRedEncryption's</h1>
+    <h2>Geometry Dash Save Toolbox</h2>
+  </div>
 
+  <div class="container">
     <!-- EDITOR -->
-    <div class="editor">
-        <h3>Step 1: Upload CCLocalLevels.dat</h3>
-        <div style="display:flex; justify-content:center;"><button class="fakeinput" id="fakeinput">Upload</button></div>
+    <div class="editor row">
+      <div class="six columns">
+        <h3>Step 1: Upload level data</h3>
+        <button class="fakeinput u-full-width" id="fakeinput">Upload</button>
+      </div>
+      <div class="six columns">
         <h3>Step 2: Select tool to use</h3>
-        <div style="display:flex; justify-content:center;">
-            <select id="toolselect">
-                <option value="decrypt">Decrypt save file</option>
-                <option value="image">Image to GD</option>
-            </select>
-        </div>
+        <select id="toolselect" class="u-full-width">
+          <option value="decrypt">Decrypt save file</option>
+          <option value="image">Image to GD</option>
+        </select>
+      </div>
+    </div>
+    <br>
+
+    <div class="editor row">
+      <div class="six columns">
         <h3>Step 3: Use the tool</h3>
+      </div>
+      <div class="six columns">
         <div id="tool"></div>
+      </div>
     </div>
     <br>
 
     <!-- THE REST -->
-    <div class="bodytext">
-        <h3>What is this website?</h3>
-        TheRedEncryption's Geometry Dash Save Toolbox is the GD community's one stop shop for all their saving needs!
-        You can do tons of cool things here, like decrypting your save file or importing images (like vector graphics and pixel art) into your levels!
+    <div class="bodytext row">
+      <h3>What is this website?</h3>
+      <p>TheRedEncryption's Geometry Dash Save Toolbox is the GD community's one stop shop for all their saving needs!
+        You can do tons of cool things here, like decrypting your save file or importing images (like vector graphics
+        and
+        pixel art) into your levels!
         Simply start by uploading CCLocalLevels.dat and then choosing a tool to use.
-        After that, you can download the modified file and place it back into your saves.
+        After that, you can download the modified file and place it back into your saves.</p>
 
-        <h3>Where are my files?</h3>
-        Your saves are located in <u><i>C:\Users\YourName\AppData\Local\GeometryDash</i></u> where you can find CCLocalLevels.dat.
-        (make sure you do not confuse this with the other .dat files there!)
+      <h3>Where are my files?</h3>
+      <p>Your saves are located in <u><i>C:\Users\YourName\AppData\Local\GeometryDash</i></u> where you can find
+        CCLocalLevels.dat.
+        (make sure you do not confuse this with the other .dat files there!)</p>
 
-        <h3>How does this website work?</h3>
-        All code is written in Javascript, which is executed by your very own browser.
-        A lot of the code is written by myself, but not all of it.
+      <h3>How does this website work?</h3>
+      <p>All code is written in Javascript, which is executed by your very own browser.
+        A lot of the code is written by myself, but not all of it.</p>
     </div>
     <div class="info">
-        Did you know? A lot of blood, sweat, and tears went into this. Visit
-        <a href="https://www.youtube.com/theredencryption" target="_blank">
-            my channel</a>
-        to see what happened.
+      Did you know? A lot of blood, sweat, and tears went into this. Visit
+      <a href="https://www.youtube.com/theredencryption" target="_blank">
+        my channel</a>
+      to see what happened.
     </div>
-    <div class="bodytext">
+    <div class="bodytext row">
+      <div class="six columns">
         <h3>Where can I view the code?</h3>
         You can view the code at
-        <a href = "https://github.com/TheRedEncryption/gdst">
-            my GitHub page,</a>
-        where all the files are located. You can even see if there are any secrets within the files in the form of comments!
+        <a href="https://github.com/TheRedEncryption/gdst">
+          my GitHub page,</a>
+        where all the files are located. You can even see if there are any secrets within the files in the form of
+        comments!
         <!-- hee hee, this is one such secret -->
         Although, you might not want to if you want to keep your sanity.
-        <br><br>
+      </div>
+      <div class="six columns">
         I'm just saying...
         <br><br>
         <div class="code">
-            output = output.replace(/-/g,"+");                        // LOOK I USED MY FIRST REGEX!!!! 
-            <br>
-            output = output.replace(/_/g,"/");                        // "that's cool now shut up lmao"
+          output = output.replace(/-/g,"+"); // LOOK I USED MY FIRST REGEX!!!!
+          <br>
+          output = output.replace(/_/g,"/"); // "that's cool now shut up lmao"
         </div>
         <br>
         ...perhaps I went a <i>bit</i> insane doing this O_O
+      </div>
     </div>
     <div class="warning">
-        Warning: You might want to backup your <b>CCLocalLevels.dat</b> file before using this website!
-        <br><br>
-        Also, this website is 100% offline. No data gets stored anywhere.
+      Warning: You might want to backup your <b>CCLocalLevels.dat</b> file before using this website!
+      <br><br>
+      Also, this website is 100% offline. No data gets stored anywhere.
     </div>
     <div class="info" id="secretinfo">
-        Fun fact: Javascript does not like to work with UTF-8 base64 encoded strings for <b>SOME. ODD. REASON.</b>
+      Fun fact: Javascript does not like to work with UTF-8 base64 encoded strings for <b>SOME. ODD. REASON.</b>
     </div>
-    <input type="file" id="levelinput">
+    <input type="file" accept=".dat" id="levelinput">
+  </div>
 </body>
+
 </html>
